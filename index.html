@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лаб1</title>
+    <style>
+        /* Стиль для текста ошибки под полем */
+        .error-text {
+            color: red;
+            font-size: 14px;
+            display: none; /* Изначально скрыто */
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        /* Стиль для поля с ошибкой (красная рамка) */
+        .input-error {
+            border: 2px solid red !important;
+        }
+        /* Стиль для блока с ошибкой (для радио и чекбоксов) */
+        .group-error {
+            border: 1px solid red;
+            padding: 5px;
+            display: inline-block;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Задание 1. Гиперссылки и форма</h1>
+
+    <h2>Список гиперссылок</h2>
+    <ul>
+        <li><a href="http://kubsu.ru">1. Абсолютная гиперссылка на главную страницу kubsu.ru(http)</a></li>
+        <li><a href="https://kubsu.ru">2. Абсолютная гиперссылка на главную страницу kubsu.ru(https)</a></li>
+        <li>
+            <a href="https://i.pinimg.com/736x/c8/82/41/c88241d4b1116c562d87a8a58d408c61.jpg">
+                <img src="https://i.pinimg.com/736x/c8/82/41/c88241d4b1116c562d87a8a58d408c61.jpg" alt="Милый котик" width="300" height="200">
+            </a>
+        </li>
+        <li><a href="/inner">4. Сокращенная ссылка на внутреннюю страницу</a></li>
+        <li><a href="/">5. Сокращенная ссылка на главную</a></li>
+        <li><a href="#bottom">6. Ссылка на фрагмент текущей страницы(вниз)</a></li>
+        <li><a href="https://kubsu.ru/?param1=value1&param2=value2&param3=value3">7. Ссылка с тремя параметрами в URL</a></li>
+        <li><a href="https://kubsu.ru/page?id=123">8. Ссылка с параметром id в URL</a></li>
+        <li><a href="page.html">9. Относительная на страницу в текущем каталоге</a></li>
+        <li><a href="about/page.html">10. Относительная на страницу в каталоге about</a></li>
+        <li><a href="../page.html">11. Относительная на страницу в каталоге выше</a></li>
+        <li><a href="../../page.html">12. Относительная на страницу двумя уровнями выше</a></li>
+        <li>13. Только лучшие поступают в <a href="https://kubsu.ru/">Кубанский государственный университет</a></li>
+        <li><a href="https://ru.wikipedia.org/wiki/Список_пород_кошек#Породы_кошек">14. Ссылка на фрагмент страницы стороннего сайта(Породы котиков)</a></li>
+        <li>
+           15. Ссылки из областей картинки:
+            <br> 
+            <img src="https://avatars.mds.yandex.net/i?id=e36184fb07d6837bf2cb9b1d5eaa2a5a_l-15711768-images-thumbs&n=13" alt="Котик хочет отдохнуть" usemap="#image-map" width="300" height="200">
+            <map name="image-map">
+                <area shape="rect" coords="0,0,150,100" href="https://vk.ru/" alt="Прямоугольная область">
+                <area shape="circle" coords="225,150,50" href="https://steamcommunity.com/login?l=russian" alt="Круглая область">
+            </map>
+        </li>
+        <li><a href="">16. Ссылка с пустым href</a></li>
+        <li><a>17. Ссылка без href</a></li>
+        <li><a href="https://kubsu.ru/" rel="nofollow">18. Ссылка, по которым запрещен переход поисковикам</a></li>
+        <li><a href="https://kubsu.ru/ " rel="nofollow">19. Ссылка, запрещённая для индексации</a></li>
+        <li>
+            20. Нумерованный список ссылок с подписями title:
+            <ol>
+                <li><a href="https://kubsu.ru/" title="Главная страница КубГУ">КубГУ</a></li>
+                <li><a href="https://www.kinopoisk.ru/" title="Кинопоиск">Кинопоиск</a></li>
+                <li><a href="https://mail.google.com/" title="Почта Gmail">Почта</a></li>
+            </ol>
+        </li>
+         <li><a href="ftp://Mariaavdoshina:12345@ftp.weblab.ru/file.zip">21. Ссылка на файл на FTP с авторизацией</a></li>
+    </ul>
+    
+    <h2>Форма</h2>
+    
+    <form id="myForm">
+        <fieldset style="width: 500px;">
+            <legend>Личные данные</legend>
+            
+            <!-- 1. ФИО -->
+            <p>
+                <label for="fullname">1. ФИО:</label><br>
+                <input type="text" id="fullname" name="fullname" placeholder="Иванов Иван Иванович">
+                <span id="error-fullname" class="error-text"></span>
+            </p>
+            
+            <!-- 2. Телефон -->
+            <p>
+                <label for="phone">2. Телефон:</label><br>
+                <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67">
+                <span id="error-phone" class="error-text"></span>
+            </p>
+            
+            <!-- 3. Email -->
+            <p>
+                <label for="email">3. E-mail:</label><br>
+                <input type="email" id="email" name="email" placeholder="example@mail.ru">
+                <span id="error-email" class="error-text"></span>
+            </p>
+            
+            <!-- 4. Дата рождения -->
+            <p>
+                <label for="birthdate">4. Дата рождения:</label><br>
+                <input type="date" id="birthdate" name="birthdate">
+                <span id="error-birthdate" class="error-text"></span>
+            </p>
+            
+            <!-- 5. Пол -->
+            <p>
+                <label>5. Пол:</label><br>
+                <div id="gender-group">
+                    <label><input type="radio" name="gender" value="male"> Мужской</label>
+                    <label><input type="radio" name="gender" value="female"> Женский</label>
+                </div>
+                <span id="error-gender" class="error-text"></span>
+            </p>
+        </fieldset>
+        
+        <fieldset style="width: 500px; padding: 15px; margin-top: 10px;">
+            <legend>Дополнительная информация</legend>
+
+            <!-- 6. Язык программирования -->
+            <p>
+                <label for="lang">6. Любимый язык программирования:</label><br>
+                <select id="lang" name="languages[]" multiple size="6">
+                    <option value="Pascal">Pascal</option>
+                    <option value="C">C</option>
+                    <option value="C++">C++</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="PHP">PHP</option>
+                    <option value="Python">Python</option>
+                    <option value="Java">Java</option>
+                    <option value="Haskell">Haskell</option>
+                    <option value="Clojure">Clojure</option>
+                    <option value="Prolog">Prolog</option>
+                    <option value="Scala">Scala</option>
+                </select>
+                <span id="error-lang" class="error-text"></span>
+            </p>
+
+            <!-- 7. Биография -->
+            <p>
+                <label for="bio">7. Биография:</label><br>
+                <textarea id="bio" name="bio" rows="5" cols="40" placeholder="Расскажите о себе..."></textarea>
+                <span id="error-bio" class="error-text"></span>
+            </p>
+
+            <!-- 8. Чекбокс -->
+            <p>
+                <label>
+                    <input type="checkbox" id="contract" name="contract" value="yes">
+                    8. С контрактом ознакомлен(а)
+                </label>
+                <span id="error-contract" class="error-text"></span>
+            </p>
+
+            <p>
+                <button type="button" onclick="validateForm()">9. Сохранить</button>
+            </p>
+        </fieldset>
+    </form>
+
+    <h2 id="bottom">Конец страницы</h2>
+    <p><a href="#top">Наверх</a></p>
+
+    <script>
+    function validateForm() {
+        let isValid = true; // Флаг: true = всё хорошо, false = есть ошибки
+
+        // 1. Сначала прячем ВСЕ старые ошибки и убираем красные рамки
+        document.querySelectorAll('.error-text').forEach(el => {
+            el.style.display = 'none';
+            el.textContent = '';
+        });
+        document.querySelectorAll('.input-error, .group-error').forEach(el => {
+            el.classList.remove('input-error', 'group-error');
+        });
+
+        // 2. Функция для показа ошибки (универсальная)
+        function showError(elementId, errorId, message, isGroup = false) {
+            const element = document.getElementById(elementId);
+            const errorSpan = document.getElementById(errorId);
+            
+            if (element) {
+                // Если это группа (радио-кнопки), добавляем класс группе, иначе — самому полю
+                element.classList.add(isGroup ? 'group-error' : 'input-error');
+            }
+            if (errorSpan) {
+                errorSpan.textContent = message;
+                errorSpan.style.display = 'block';
+            }
+            isValid = false;
+        }
+
+        // 3. Проверяем поля по очереди (используем простые if)
+
+        // ФИО
+        const fio = document.getElementById('fullname').value.trim();
+        if (fio === '') {
+            showError('fullname', 'error-fullname', 'Введите данные');
+        } else if (!/^[а-яА-ЯёЁa-zA-Z\s\-]+$/.test(fio)) {
+            showError('fullname', 'error-fullname', 'Только буквы, пробелы и дефисы');
+        }
+
+        // Телефон
+        const phone = document.getElementById('phone').value.trim();
+        if (phone === '') {
+            showError('phone', 'error-phone', 'Введите данные');
+        } else if (!/^[\d\s\+\-\(\)]+$/.test(phone)) {
+            showError('phone', 'error-phone', 'Неверный формат');
+        }
+
+        // Email
+        const email = document.getElementById('email').value.trim();
+        if (email === '') {
+            showError('email', 'error-email', 'Введите данные');
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            showError('email', 'error-email', 'Неверный формат');
+        }
+
+        // Дата рождения
+        if (document.getElementById('birthdate').value === '') {
+            showError('birthdate', 'error-birthdate', 'Введите данные');
+        }
+
+        // Пол (радио-кнопки)
+        const genderSelected = [...document.getElementsByName('gender')].some(r => r.checked);
+        if (!genderSelected) {
+            showError('gender-group', 'error-gender', 'Выберите пол', true); // true = это группа
+        }
+
+        // Язык программирования
+        if (document.getElementById('lang').selectedOptions.length === 0) {
+            showError('lang', 'error-lang', 'Выберите язык');
+        }
+
+        // Биография
+        const bio = document.getElementById('bio').value.trim();
+        if (bio === '') {
+            showError('bio', 'error-bio', 'Введите данные');
+        } else if (bio.length < 10) {
+            showError('bio', 'error-bio', 'Слишком коротко (мин. 10 символов)');
+        }
+
+        // Чекбокс
+        if (!document.getElementById('contract').checked) {
+            showError('contract', 'error-contract', 'Поставьте галочку');
+        }
+
+        // 4. Итог
+        if (isValid) {
+            alert("Данные успешно сохранены!");
+        }
+    }
+</script>
+</body>
+</html>
